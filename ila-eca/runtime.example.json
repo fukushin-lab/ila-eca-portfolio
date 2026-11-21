@@ -1,0 +1,20 @@
+{
+  "db": "data/audit.sqlite3",
+  "host": "127.0.0.1",
+  "port": 8766,
+  "actor": "LOCAL-WEB-OPERATOR",
+  "generation_enabled": false,
+  "demo": false,
+  "existing_case_ids": [],
+  "allowed_change_ids": [],
+  "allowed_notification_config_sha256": [],
+  "collaboration_config": null,
+  "approval_policy_path": null,
+  "model_profile": null,
+  "asr_model_path": null,
+  "drive_files": [],
+  "reviewers": [],
+  "calendar_names": {},
+  "max_upload_bytes": 67108864,
+  "open_browser": true
+}

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+runtime_deps/
+runtime.json
+ACTIVE_RUNTIME.json
+data/
+tests/results/
+.env
+.env.*
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+.venv/

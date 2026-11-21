@@ -1,0 +1,22 @@
+{
+  "scope": "Single synthetic local Service-selector incident",
+  "state": "RECOVERED_LAB_ONLY",
+  "model": "gpt-6.2-astra",
+  "Astra_investigation_calls": 6,
+  "Astra_concrete_plan_calls": 1,
+  "previous_local_8B_calls": 2,
+  "human_approval_kind": "SAME_OPERATOR_SEPARATE_ACCOUNT_TEST_ONLY",
+  "formal_production_approval": false,
+  "independent_live_observations": true,
+  "case_database_continuation": "Same case ID and immutable investigation preserved; explicit isolated account-test copies only",
+  "notification_source": "Actual Prometheus firing alert -> polling relay -> existing authenticated intake; no real Alertmanager server",
+  "GitLab_merged": false,
+  "Baseline_updated": false,
+  "AWS_built": false,
+  "repair_job_results": [
+    "FAILED_BEFORE_MUTATION_CA_UNAVAILABLE",
+    "SUCCESSFUL_FRESH_RECOVERY_CONFIRMED"
+  ],
+  "source_date": "2026-11-20",
+  "current_langgraph_version_run": false
+}

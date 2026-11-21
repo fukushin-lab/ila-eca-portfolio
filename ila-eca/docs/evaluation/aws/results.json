@@ -1,0 +1,42 @@
+[
+  {
+    "model": "gpt-6.2-astra",
+    "generation_complete": true,
+    "elapsed_seconds": 162.953,
+    "review": {
+      "case": "api_worker",
+      "model": "gpt-6.2-astra",
+      "generation_complete": true,
+      "verdict": "PASS_CONDITIONAL_LOGICAL_DRAFT",
+      "critical_count": 0,
+      "major_count": 0,
+      "minor_count": 0,
+      "semantic_pass": true,
+      "information_insufficient": false,
+      "production_ready": false
+    },
+    "draft_sha256": "8d4804cbf8e595304673dfe0261bd18fa479fe08718713f07792cb722fb11bac",
+    "source_date": "2026-11-18",
+    "current_langgraph_version_run": false
+  },
+  {
+    "model": "gpt-6.2-sol",
+    "generation_complete": true,
+    "elapsed_seconds": 69.797,
+    "review": {
+      "case": "api_worker",
+      "model": "gpt-6.2-sol",
+      "generation_complete": true,
+      "verdict": "PASS_CONDITIONAL_LOGICAL_DRAFT",
+      "critical_count": 0,
+      "major_count": 0,
+      "minor_count": 0,
+      "semantic_pass": true,
+      "information_insufficient": false,
+      "production_ready": false
+    },
+    "draft_sha256": "8f2a4448c5d735992e8bd2e95afbc58598a2a398b4d08509f12b3c8a9092b7cd",
+    "source_date": "2026-11-18",
+    "current_langgraph_version_run": false
+  }
+]

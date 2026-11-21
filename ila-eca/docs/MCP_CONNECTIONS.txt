@@ -1,0 +1,107 @@
+ILA/ECA → Google / GitLab：MCP接続
+
+ILA/ECAがMCPクライアントとなり、提供元のMCPサーバーを直接呼びます。
+ILA/ECAをMCPサーバーとして公開する変更ではありません。
+新しい中継サーバー、常駐サービス、Node.js、外部LLMは追加していません。
+
+接続した操作
+
+  Google Calendar：list_eventsで許可済みカレンダーと明示した日時範囲を取得。
+                  videoEntryPointのMeet URLを既存の会議取込へ対応付けます。
+                  原MCP応答は既存Evidenceに別途保持します。
+  Google Drive：download_file_contentで原ファイル／明示したTXTエクスポートを取得。
+               前後の版とダウンロード権限は既存Drive REST APIで照合します。
+  GitLab：add_commitで既存の対象ファイルを一括コミット。
+          save_merge_requestでDraft MR作成、またはレビュー担当者の割当て。
+          コミットの親、全文、版・ハッシュ、MR、本人・権限・承認は既存APIで照合します。
+
+MCPだけに置き換えていない操作
+
+  Meetの会議記録・文字起こしエントリ・録音一覧は既存APIです。
+  DriveのMCPメタデータだけでは、既存のversion/capabilitiesの確認を置換できません。
+  GitLabの全文取得はMCPの部分表示・切捨てを採用せず、既存APIを維持します。
+  正式承認はMCPの説明文や集約approvedフラグだけでは成立させません。
+  これらは設定時に認めたAPI補完です。MCP失敗後に別経路で再送するものではありません。
+
+既存の入口
+
+  画面・CLI → collaboration/entry.py → collaboration/mcp.py
+  → 提供元のMCP、または明示した読み取りAPI補完
+  → 既存Google取込／GitLab提出／承認判定／案件保存
+
+  GoogleとGitLabの画面操作、要求の形式、案件・文書の保存形式は同じです。
+  ファイル投入による会議取込も維持しています。
+  同じ提出の重複防止、結果不明の照合、改訂時の承認無効化は既存処理が担当します。
+
+管理者設定
+
+  既存のcollaboration接続設定のgoogleとgitlabに、次のmcp欄を追加します。
+  新しい案件台帳やDBは作りません。通常のruntime.jsonを初期化しません。
+
+  google内：
+    "mcp": {
+      "enabled": true,
+      "calendar": true,
+      "drive": true,
+      "credential_env": "ILA_GOOGLE_MCP_ACCESS_TOKEN",
+      "rest_supplement": true
+    }
+
+  gitlab内：
+    "mcp": {
+      "enabled": true,
+      "credential_env": "ILA_GITLAB_MCP_TOKEN",
+      "rest_supplement": true
+    }
+
+  REST補完用の既存認証も必要です。MCP用とREST用の資格情報は分離します。
+  credential_envは環境変数名だけです。トークンそのものを設定・画面・ログへ書きません。
+  カレンダー、案件、プロジェクト、送信対象ハッシュ、期限、承認権限の許可は従来どおりです。
+  mcp欄がない既存設定はRESTのまま動きます。MCP設定が不正なら停止します。
+  この配布物は個人の接続設定や資格情報を含まず、実接続を自動的に有効にしません。
+
+実接続で利用者に必要な操作
+
+  1. GitLabの既存テストグループで、MCPサーバーへのアクセスを許可する設定を確認。
+     無料プランを維持し、Duo/Credits/CI実行や有料契約は選びません。
+  2. GitLabのMCP用認証を用意します。公式仕様ではmcpスコープのOAuthか、
+     MCP ToolのExecute権限を持つfine-grained PATです。
+     既存のREST用トークンにapi権限があっても、そのままMCPで使えるとは限りません。
+     トークン発行と保存方法は、対象プロジェクトと必要権限を確定してから案内します。
+  3. GoogleはWorkspace MCPのDeveloper Preview利用可否を確認し、既存プロジェクトで
+     Calendar MCP API / Drive MCP APIと、AI-powered agent用OAuth設定を確認します。
+     Calendar読取りと限定ファイルの必要範囲だけを本人が同意します。
+     通常REST用の旧OAuthクライアントを、MCP認証済みとは扱いません。
+  4. 認証がそろった後、既存の許可済みテストカレンダー／合成Drive資料／GitLab
+     テストプロジェクトだけを設定し、予定取得→取込、合成資料→Draft MRを確認します。
+     新しい送信先、追加権限、課金は自動追加しません。マージや構築は行いません。
+
+今回確認したこと
+
+  公式Calendar／Drive MCPに、認証情報や案件データを送らず、実装したクライアントで
+  initialize→initialized通知→tools/listを各1回通しました。交渉版は2025-11-25です。
+  実際に返された公開ツールの入力スキーマも、無課金回帰の資料として固定しています。
+  GitLabの公開エンドポイントは401を返しました。アカウント認証の成功とは区別します。
+  模擬MCPのinitialize / notifications/initialized / tools/list / tools/call。
+  JSONとSSE、原応答・スキーマ識別・所要時間・実通信回数の保存。
+  権限不足、認証不足、形式不良、容量超過、途中中断、ツール不足は成功扱いしません。
+  MCP書込み後の通信断でも自動再送せず、既存の明示的な照合で再開します。
+  提出に必要なコミット／MRツールは書込み前に照合し、片方がないまま先の操作をしません。
+  MCP経由の担当者割当て後も、本人・権限・対象版の承認条件を維持します。
+  実サービスのアカウント接続は、MCP用の認証が未設定のため未確認です。
+  模擬試験は実サービス接続や実承認の成功証明には数えません。
+
+実装対象のプロトコル
+
+  Streamable HTTPの直接接続。2025-11-25 / 2025-06-18 / 2025-03-26を確認します。
+  サーバーからのsamplingや任意実行要求、stdioの任意プロセス起動は扱いません。
+  OAuthの自動登録・権限同意・自動更新、SSE再接続・要求の自動再送も行いません。
+  HTTPエラー本文は資格情報を漏らさないため保存せず、状態と理由を保存します。
+  正常・不正JSON/SSEの受信本文は取得できた原バイトと完全受信の有無を記録します。
+
+  https://developers.google.com/workspace/guides/configure-mcp-servers
+  https://developers.google.com/workspace/calendar/api/v3/reference/mcp
+  https://developers.google.com/workspace/drive/api/reference/mcp
+  https://docs.gitlab.com/user/model_context_protocol/mcp_server/
+  https://docs.gitlab.com/user/model_context_protocol/mcp_server_tools/
+  https://modelcontextprotocol.io/specification/2025-11-25/basic/transports

@@ -1,0 +1,449 @@
+[
+  {
+    "name": "aiosqlite",
+    "version": "0.22.1",
+    "license_expression": null,
+    "license": null,
+    "wheel": "aiosqlite-0.22.1-py3-none-any.whl",
+    "license_files": [
+      "aiosqlite-0.22.1.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "annotated-types",
+    "version": "0.8.0",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "annotated_types-0.8.0-py3-none-any.whl",
+    "license_files": [
+      "annotated_types-0.8.0.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "anyio",
+    "version": "4.16.0",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "anyio-4.16.0-py3-none-any.whl",
+    "license_files": [
+      "anyio-4.16.0.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "certifi",
+    "version": "2026.10.23",
+    "license_expression": null,
+    "license": "MPL-2.0",
+    "wheel": "certifi-2026.10.23-py3-none-any.whl",
+    "license_files": [
+      "certifi-2026.10.23.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "charset-normalizer",
+    "version": "3.5.2",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "charset_normalizer-3.5.2.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "distro",
+    "version": "1.9.0",
+    "license_expression": null,
+    "license": "Apache License, Version 2.0",
+    "wheel": "distro-1.9.0-py3-none-any.whl",
+    "license_files": [
+      "distro-1.9.0.dist-info/LICENSE"
+    ]
+  },
+  {
+    "name": "h11",
+    "version": "0.16.0",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "h11-0.16.0-py3-none-any.whl",
+    "license_files": [
+      "h11-0.16.0.dist-info/licenses/LICENSE.txt"
+    ]
+  },
+  {
+    "name": "httpcore",
+    "version": "1.0.9",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "httpcore-1.0.9-py3-none-any.whl",
+    "license_files": [
+      "httpcore-1.0.9.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "httpcore2",
+    "version": "2.16.2",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "httpcore2-2.16.2-py3-none-any.whl",
+    "license_files": [
+      "httpcore2-2.16.2.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "httpx",
+    "version": "0.28.1",
+    "license_expression": null,
+    "license": "BSD-3-Clause",
+    "wheel": "httpx-0.28.1-py3-none-any.whl",
+    "license_files": [
+      "httpx-0.28.1.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "httpx2",
+    "version": "2.16.2",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "httpx2-2.16.2-py3-none-any.whl",
+    "license_files": [
+      "httpx2-2.16.2.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "idna",
+    "version": "3.20",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "idna-3.20-py3-none-any.whl",
+    "license_files": [
+      "idna-3.20.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "jsonpatch",
+    "version": "1.48",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "jsonpatch-1.48-py3-none-any.whl",
+    "license_files": [
+      "jsonpatch-1.48.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "jsonpointer",
+    "version": "3.12",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "jsonpointer-3.12-py3-none-any.whl",
+    "license_files": [
+      "jsonpointer-3.12.dist-info/licenses/AUTHORS",
+      "jsonpointer-3.12.dist-info/licenses/LICENSE.txt"
+    ]
+  },
+  {
+    "name": "langchain-core",
+    "version": "1.8.4",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "langchain_core-1.8.4-py3-none-any.whl",
+    "license_files": [
+      "langchain_core-1.8.4.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langchain-protocol",
+    "version": "0.0.22",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "langchain_protocol-0.0.22-py3-none-any.whl",
+    "license_files": [
+      "langchain_protocol-0.0.22.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langgraph",
+    "version": "1.2.24",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langgraph-1.2.24-py3-none-any.whl",
+    "license_files": [
+      "langgraph-1.2.24.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langgraph-checkpoint",
+    "version": "4.3.2",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langgraph_checkpoint-4.3.2-py3-none-any.whl",
+    "license_files": [
+      "langgraph_checkpoint-4.3.2.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langgraph-checkpoint-sqlite",
+    "version": "3.1.3",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langgraph_checkpoint_sqlite-3.1.3-py3-none-any.whl",
+    "license_files": [
+      "langgraph_checkpoint_sqlite-3.1.3.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langgraph-prebuilt",
+    "version": "1.1.3",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langgraph_prebuilt-1.1.3-py3-none-any.whl",
+    "license_files": [
+      "langgraph_prebuilt-1.1.3.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langgraph-sdk",
+    "version": "0.4.14",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langgraph_sdk-0.4.14-py3-none-any.whl",
+    "license_files": [
+      "langgraph_sdk-0.4.14.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "langsmith",
+    "version": "0.15.1",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "langsmith-0.15.1-py3-none-any.whl",
+    "license_files": [
+      "langsmith-0.15.1.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "lark",
+    "version": "1.3.1",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "lark-1.3.1-py3-none-any.whl",
+    "license_files": [
+      "lark-1.3.1.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "orjson",
+    "version": "3.13.0",
+    "license_expression": "MPL-2.0 AND (Apache-2.0 OR MIT)",
+    "license": null,
+    "wheel": "orjson-3.13.0-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "orjson-3.13.0.dist-info/licenses/LICENSE-APACHE",
+      "orjson-3.13.0.dist-info/licenses/LICENSE-MIT",
+      "orjson-3.13.0.dist-info/licenses/LICENSE-MPL-2.0"
+    ]
+  },
+  {
+    "name": "ormsgpack",
+    "version": "1.13.1",
+    "license_expression": "Apache-2.0 OR MIT",
+    "license": null,
+    "wheel": "ormsgpack-1.13.1-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "ormsgpack-1.13.1.dist-info/licenses/LICENSE-APACHE",
+      "ormsgpack-1.13.1.dist-info/licenses/LICENSE-MIT"
+    ]
+  },
+  {
+    "name": "packaging",
+    "version": "26.3",
+    "license_expression": "Apache-2.0 OR BSD-2-Clause",
+    "license": null,
+    "wheel": "packaging-26.3-py3-none-any.whl",
+    "license_files": [
+      "packaging-26.3.dist-info/licenses/LICENSE",
+      "packaging-26.3.dist-info/licenses/LICENSE.APACHE",
+      "packaging-26.3.dist-info/licenses/LICENSE.BSD"
+    ]
+  },
+  {
+    "name": "pydantic",
+    "version": "2.14.4",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "pydantic-2.14.4-py3-none-any.whl",
+    "license_files": [
+      "pydantic-2.14.4.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "pydantic_core",
+    "version": "2.50.5",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "pydantic_core-2.50.5-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "pydantic_core-2.50.5.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "python-hcl2",
+    "version": "7.3.1",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "python_hcl2-7.3.1-py3-none-any.whl",
+    "license_files": [
+      "python_hcl2-7.3.1.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "PyYAML",
+    "version": "6.0.3",
+    "license_expression": null,
+    "license": "MIT",
+    "wheel": "pyyaml-6.0.3-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "pyyaml-6.0.3.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "regex",
+    "version": "2026.11.19",
+    "license_expression": "Apache-2.0 AND CNRI-Python",
+    "license": null,
+    "wheel": "regex-2026.11.19-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "regex-2026.11.19.dist-info/licenses/LICENSE.txt"
+    ]
+  },
+  {
+    "name": "requests",
+    "version": "2.34.2",
+    "license_expression": null,
+    "license": "Apache-2.0",
+    "wheel": "requests-2.34.2-py3-none-any.whl",
+    "license_files": [
+      "requests-2.34.2.dist-info/licenses/LICENSE",
+      "requests-2.34.2.dist-info/licenses/NOTICE"
+    ]
+  },
+  {
+    "name": "requests-toolbelt",
+    "version": "1.0.0",
+    "license_expression": null,
+    "license": "Apache 2.0",
+    "wheel": "requests_toolbelt-1.0.0-py2.py3-none-any.whl",
+    "license_files": [
+      "requests_toolbelt-1.0.0.dist-info/LICENSE"
+    ]
+  },
+  {
+    "name": "sniffio",
+    "version": "1.3.1",
+    "license_expression": null,
+    "license": "MIT OR Apache-2.0",
+    "wheel": "sniffio-1.3.1-py3-none-any.whl",
+    "license_files": [
+      "sniffio-1.3.1.dist-info/LICENSE",
+      "sniffio-1.3.1.dist-info/LICENSE.APACHE2",
+      "sniffio-1.3.1.dist-info/LICENSE.MIT"
+    ]
+  },
+  {
+    "name": "sqlite-vec",
+    "version": "0.1.9",
+    "license_expression": null,
+    "license": "MIT License, Apache License, Version 2.0",
+    "wheel": "sqlite_vec-0.1.9-py3-none-win_amd64.whl",
+    "license_files": []
+  },
+  {
+    "name": "tenacity",
+    "version": "9.2.1",
+    "license_expression": "Apache-2.0",
+    "license": null,
+    "wheel": "tenacity-9.2.1-py3-none-any.whl",
+    "license_files": [
+      "tenacity-9.2.1.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "truststore",
+    "version": "0.10.5",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "truststore-0.10.5-py3-none-any.whl",
+    "license_files": [
+      "truststore-0.10.5.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.16.0",
+    "license_expression": "PSF-2.0",
+    "license": null,
+    "wheel": "typing_extensions-4.16.0-py3-none-any.whl",
+    "license_files": [
+      "typing_extensions-4.16.0.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "typing-inspection",
+    "version": "0.4.5",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "typing_inspection-0.4.5-py3-none-any.whl",
+    "license_files": [
+      "typing_inspection-0.4.5.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "urllib3",
+    "version": "2.8.0",
+    "license_expression": "MIT",
+    "license": null,
+    "wheel": "urllib3-2.8.0-py3-none-any.whl",
+    "license_files": [
+      "urllib3-2.8.0.dist-info/licenses/LICENSE.txt"
+    ]
+  },
+  {
+    "name": "uuid_utils",
+    "version": "0.19.0",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "uuid_utils-0.19.0-cp310-abi3-win_amd64.whl",
+    "license_files": [
+      "uuid_utils-0.19.0.dist-info/licenses/LICENSE.md"
+    ]
+  },
+  {
+    "name": "websockets",
+    "version": "17.4",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "websockets-17.4-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "websockets-17.4.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "xxhash",
+    "version": "4.1.0",
+    "license_expression": null,
+    "license": "BSD-2-Clause",
+    "wheel": "xxhash-4.1.0-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "xxhash-4.1.0.dist-info/licenses/LICENSE"
+    ]
+  },
+  {
+    "name": "zstandard",
+    "version": "0.25.0",
+    "license_expression": "BSD-3-Clause",
+    "license": null,
+    "wheel": "zstandard-0.25.0-cp312-cp312-win_amd64.whl",
+    "license_files": [
+      "zstandard-0.25.0.dist-info/licenses/LICENSE"
+    ]
+  }
+]

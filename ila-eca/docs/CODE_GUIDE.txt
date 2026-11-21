@@ -1,0 +1,127 @@
+公開版の掲載範囲
+
+この一式は本体コード・解説・代表的な検証ケースを読むための公開版です。
+依存wheel、Windows起動一式、全回帰試験用の補助コード・実行ログは別管理です。
+APP内のソースとWEB_DEPENDENCIES.jsonは固定版のまま掲載しています。
+APP/start_web_ui.pyは実行配布版の起動・整合性確認を説明するソースです。
+公開版だけで実行一式がそろう構成ではありません。
+
+代表的な既存テストはtests/unit/、実測事例はdocs/evaluation/へ掲載しています。
+全回帰試験の件数を、この代表テストだけの実行結果とは扱いません。
+
+ILA/ECA — 現行コードの読み方
+
+以下のパスはAPP/ILA_ECA_REAL_DISCOVERY_LAB/を起点とします。
+
+最初に追う流れ
+
+  画面 web/app.js
+    → HTTP入口 run_web_ui.py
+    → 案件と操作 webapp/portal.py
+    → A〜Hの実行 run_structured_design_v2.py の dispatch()
+    → 各業務の生成・検査・保存
+    → Portal.worker() が結果と成果物を案件へ結び付ける
+    → detail() / document_view() が保存済み内容を画面へ返す
+
+画面と業務の二つの振分けは、同じ判断の二重実装ではありません。
+Portalは入力欄を既存要求へ写し、dispatchは要求を担当処理へ渡します。
+モデルの指示・Schema・意味の検査・正式承認の判定は、画面側に複製していません。
+
+「入力して実行」を追う
+
+  1. enqueue() が認可、入力と資料の結合、既存の同一要求を確認します。
+     同一入力の二重クリックや再読込みは同じジョブを返します。
+  2. worker() が記録された操作を一度実行します。
+  3. perform() は認可、入力保存、資料と版の確認、要求組立て、実行を順に呼びます。
+     _ready_materials() は資料の取込み完了を確認します。
+     _check_design_revision() は古い版からの生成を止めます。
+     _retain_form_environment() は入力値を受領資料として出所付きで保存します。
+     _build_route_request() は既存A〜H要求の組立てだけを担当します。
+  4. 業務ごとの組立ては、_design_payload()、_plan_payload()、
+     _incident_payload()、_meeting_payload()、_aws_design_payload() にあります。
+     D・F・Hの短い組立ては_build_route_request()内で完結します。
+  5. dispatch() が担当する処理を呼びます。結果と失敗は既存の証跡・文書へ保存します。
+
+業務の実装を読む
+
+  A 非AWS設計：design/generation.py → design/non_aws.py
+  B 作業計画：design/generation.py → lifecycle/planning.py
+  C 障害調査：run_incident_investigation.py → incident/investigation.py
+              → incident/reasoner.py と登録済みreaders
+  D 資料への質問、E 会議、F 変更不要、H セキュリティ：design/context_routes.py
+  G 構造化AWS設計・IaC・同一設計の改訂：design/aws.py
+
+Gの二つの経路について
+
+  画面のGはprovider=LOCAL_DESIGNを組み立て、design/aws.pyへ渡します。
+  design/cloud_draft.pyは、既存CLI・明示した比較経路のMarkdown草案です。
+  構造化IaC・版改訂を持つaws.pyとは入出力と保存契約が違います。
+  aws.pyが失敗したときに、cloud_draft.pyへ自動で切り替える処理はありません。
+  この版では両方の既存入口を維持しています。採用モデルの変更や本番統合は行っていません。
+
+共通化しているものと、混同しないもの
+
+  core/storage.py：既存DB接続と基本証跡
+  core/cases.py：案件と証拠メタデータの境界
+  core/artifacts.py：文書・構造化データ・版・ハッシュの共通登録と照合
+  knowledge/intake.py：受領資料の原文・所属・索引・検索根拠
+  llm/generation.py：通常経路の入力予約・原応答保存・保存済み結果の照合
+  collaboration/：外部接続の許可、資料取込み、提出、GitLab本人・権限と承認の照合
+
+  A専用生成と共通生成の予約は見た目が似ていますが、照合キーと既存記録が異なります。
+  Aはcache_key・condition・packet、共通経路はscope・source・adapter・要求全体を照合します。
+  文書も共通の登録先を使いつつ、元資料・モデル原応答・調査状態への照合が業務ごとに必要です。
+  今回の可読性修正では、その契約を一つの方式へ置換していません。
+  JSON正規化もNaN拒否や改行の有無が異なり、単純な同名化はしていません。
+
+承認・中断・再開を追う
+
+  Portal.collaborate() → collaboration/entry.py → gitlab.py / approval.py
+  画面の表示は提出・レビュー・正式承認・実行許可を区別します。
+  正式承認は本人・権限・設計ID・版・ハッシュ・コミットを既存条件で照合します。
+  改訂時には古い承認を流用しません。
+  結果不明のジョブは自動実行せず、reconcile()で既存結果を照合します。
+  障害のresumeは保存済み調査へ追加証拠を渡し、最初から作り直しません。
+
+この版の進行制御
+
+  core/workflows.pyが実際のLangGraph StateGraph、SQLite checkpoint、interruptを提供します。
+  状態、分岐と明示的な待機・再開を扱い、業務の入力・原応答・資格情報をグラフstateへ入れません。
+  Portal.worker/perform、dispatch、Investigation.advance/run、collaboration.entry、Google会議解析、
+  A/Gの生成→文書、B実行とAWX実行が、それぞれ意味のある業務ノードとedgeで接続されています。
+  コードを追う際は各関数末尾のgraph.add_edge/add_conditional_edgesから業務ノードを読めます。
+  LangGraph未導入時に古いコントローラーへ戻る処理はありません。
+  安全条件・予約・承認対象の照合は各ノードが既存部品を呼び出します。
+  詳細と未確認範囲はLANGGRAPH_MIGRATION.txtとevaluation/REGRESSION.mdを参照してください。
+  テストはtests/に分離し、整形ツールは実行依存へ含めません。
+
+Google / GitLabのMCP接続
+
+  collaboration/entry.pyは、MCPが指定された接続ではcollaboration/mcp.pyのAdapterを選びます。
+  画面のDrive取込と、承認通知のCLI入口も同じ設定選択を利用します。
+  MCP呼出し先は提供元のサーバーです。ILA/ECA用の中継サーバーは増設していません。
+  取得・提出の業務処理は既存のgoogle.py / gitlab.py / approval.pyです。
+  MCPとAPI補完の対象、認証準備、未確認範囲はdocs/MCP_CONNECTIONS.txtを参照してください。
+
+
+今回のローカル復旧接続
+  incident/lab_adapters.py: 明示したkindコンテキスト・対象Namespaceの読取り、固定AWX Template。
+  incident/recovery.py: Cの修復候補の具体化、既存レビューへの接続、承認版と実行先の照合、
+    1回の起動と結果不明の照合、新規観測による復旧確認。原因・調査順・変更値は固定しない。
+  incident/artifacts.py / kubernetes_review.py: 元のport変更契約を維持し、selector変更を別の型で追加。
+  collaboration/approval.py: 署名付き原通知の保存と失効は即時。外部APIを要する反映は受領応答後。
+  通常画面・A〜Hの入口と処理の配置は従来どおり。モデル・対象・承認を画面の都合で迂回しない。
+
+今回の依存整理
+  共通文書のパス・ID・種別ごとの検証はcore/artifacts.pyです。
+  knowledge/review.pyは保存済み資料レビューの読取り照合だけを担当します。
+  保存済み文書を読む処理は、過去の文書の版・原文・ハッシュを検証するために保持しています。
+
+今回の共通処理の入口
+  JSON解析: core/artifacts.parse_json。各通信入口のサイズ・認可・原文保存は各入口に残す。
+  A/D/Hの構造検査: core/artifacts.validate_model_shape。業務ごとの意味的検査は従来のvalidate。
+  A/DのRAG出所情報: knowledge/intake.source_context。資料の選択順序は各業務で維持。
+  画面入力: Portal.validate_case_form/_case_receiptを受付・実行の両方で呼ぶ。
+  状態表示: webapp/portal.job_result_categoryをjob()と案件一覧が共有する。
+  保存: perform内のretain_requestノードを保存のみ・生成・再開で共有する。
+  代表的な検査コードと結果はevaluation/REGRESSION.mdを参照してください。
